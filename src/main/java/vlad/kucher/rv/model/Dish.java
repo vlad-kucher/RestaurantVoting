@@ -14,13 +14,13 @@ public class Dish extends AbstractNamedEntity {
     @JoinColumn(name = "menu_id", nullable = false)
     @NotNull
     @JsonIgnore
-    Menu menu;
+    private Menu menu;
 
     @Column(name = "price", nullable = false)
     @Positive
     // http://stackoverflow.com/a/43051227/548473
     @NotNull
-    Integer price;
+    private Integer price;
 
     public Dish(){
     }
