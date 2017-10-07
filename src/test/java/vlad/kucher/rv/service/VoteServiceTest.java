@@ -4,6 +4,7 @@ import org.junit.Assume;
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
+import vlad.kucher.rv.util.VoteUtil;
 import vlad.kucher.rv.util.exception.TooLateModificationException;
 import vlad.kucher.rv.web.json.JsonUtil;
 
@@ -18,7 +19,7 @@ public class VoteServiceTest extends AbstractServiceTest {
 
     @Test
     public void vote() throws Exception {
-        Assume.assumeFalse(LocalTime.now().isAfter(VoteService.EXPIRED_TIME));
+        Assume.assumeFalse(LocalTime.now().isAfter(VoteUtil.EXPIRED_TIME));
         service.vote(PUZATA_HATA_ID, USER_ID);
 
         String actual = JsonUtil.writeValue(service.current(USER_ID).getMenu().getRestaurant());
@@ -28,7 +29,7 @@ public class VoteServiceTest extends AbstractServiceTest {
 
     @Test
     public void voteExpired() throws Exception {
-        Assume.assumeTrue(LocalTime.now().isAfter(VoteService.EXPIRED_TIME));
+        Assume.assumeTrue(LocalTime.now().isAfter(VoteUtil.EXPIRED_TIME));
 
         thrown.expect(TooLateModificationException.class);
         service.vote(PUZATA_HATA_ID, USER_ID);
