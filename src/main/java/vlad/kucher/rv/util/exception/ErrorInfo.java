@@ -2,10 +2,10 @@ package vlad.kucher.rv.util.exception;
 
 public class ErrorInfo {
     public final String url;
-    public final String t;
+    public final String exception;
 
     public ErrorInfo(String url, Throwable t) {
         this.url = url;
-        this.t = t.getLocalizedMessage();
+        this.exception = t.getLocalizedMessage();
     }
 }
