@@ -45,8 +45,8 @@ public class AdminRestaurantController {
         service.delete(id);
     }
 
-    @GetMapping
-    public Restaurant getByName(@RequestParam String name){
+    @GetMapping(value = "/by")
+    public Restaurant getByName(@RequestParam("name") String name){
         return service.getByName(name);
     }
 }

@@ -18,7 +18,7 @@ public class VoteController {
     private VoteService service;
 
     @PostMapping
-    public ResponseEntity<Restaurant> vote(@RequestParam int restaurantId){
+    public ResponseEntity<Restaurant> vote(@RequestParam("restaurantId") int restaurantId){
         Vote vote = service.vote(restaurantId, AuthorizedUser.id());
         return new ResponseEntity<>(vote.getMenu().getRestaurant(), HttpStatus.CREATED);
     }

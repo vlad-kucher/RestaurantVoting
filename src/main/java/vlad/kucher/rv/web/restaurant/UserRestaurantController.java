@@ -21,8 +21,8 @@ public class UserRestaurantController {
         return service.get(LocalDate.now(), id);
     }
 
-    @GetMapping(value = "/{id}")
-    public RestaurantTo getForDate(@RequestParam LocalDate date, @PathVariable("id") int id){
+    @GetMapping(value = "/{id}/by")
+    public RestaurantTo getForDate(@RequestParam("date") LocalDate date, @PathVariable("id") int id){
         return service.get(date, id);
     }
 
@@ -31,12 +31,12 @@ public class UserRestaurantController {
         return service.getAll(LocalDate.now());
     }
 
-    @GetMapping
-    public List<RestaurantTo> getAllForDate(@RequestParam LocalDate date){
+    @GetMapping(value = "/by")
+    public List<RestaurantTo> getAllForDate(@RequestParam("date") LocalDate date){
         return service.getAll(date);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}/all")
     public List<RestaurantTo> getOneWithAllMenus(@PathVariable("id") int id) {
         return service.getOneWithAllMenus(id);
     }
