@@ -3,18 +3,17 @@ package vlad.kucher.rv;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import vlad.kucher.rv.model.User;
-import vlad.kucher.rv.to.UserTo;
 
 import static java.util.Objects.requireNonNull;
 
 public class AuthorizedUser extends org.springframework.security.core.userdetails.User{
     private static final long serialVersionUID = 1L;
 
-    private final UserTo userTo;
+    private final User user;
 
     public AuthorizedUser(User user) {
         super(user.getEmail(), user.getPassword(), user.isEnabled(), true, true, true, user.getRoles());
-        this.userTo = new UserTo(user.getId(), user.getName(), user.getEmail(), user.getPassword());
+        this.user = user;
     }
 
     public static AuthorizedUser safeGet() {
@@ -33,15 +32,11 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
     }
 
     public static int id() {
-        return get().userTo.getId();
-    }
-
-    public UserTo getUserTo() {
-        return userTo;
+        return get().user.getId();
     }
 
     @Override
     public String toString() {
-        return userTo.toString();
+        return user.toString();
     }
 }
