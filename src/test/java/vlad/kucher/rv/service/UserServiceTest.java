@@ -8,6 +8,8 @@ import vlad.kucher.rv.model.User;
 import vlad.kucher.rv.util.exception.NotFoundException;
 import vlad.kucher.rv.web.json.JsonUtil;
 
+import javax.validation.ConstraintViolationException;
+
 import static vlad.kucher.rv.TestData.*;
 
 public class UserServiceTest extends AbstractServiceTest {
@@ -77,5 +79,11 @@ public class UserServiceTest extends AbstractServiceTest {
     public void deleteNotFound() throws Exception {
         thrown.expect(NotFoundException.class);
         service.delete(-1);
+    }
+
+    @Test
+    public void testDuplicateMailCreate() throws Exception {
+        thrown.expect(ConstraintViolationException.class);
+        service.create(new User(null, "duplicate", USER.getEmail(), "pass", Role.ROLE_USER));
     }
 }
