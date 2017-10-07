@@ -12,10 +12,11 @@ import vlad.kucher.rv.util.exception.TooLateModificationException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 
 @Service
 public class VoteService {
+
+    public static final LocalTime EXPIRED_TIME = LocalTime.of(11, 0);
 
     @Autowired
     private VoteRepository repository;
@@ -27,17 +28,22 @@ public class VoteService {
     private UserRepository userRepository;
 
     @Transactional
-    public Vote vote(int restaurantId, LocalDate date, int userId){
-        if (date != LocalDate.now()) {
-            throw new IllegalArgumentException("You can vote only for today's date");
-        }
-
+    public Vote vote(int restaurantId, int userId){
         Vote vote = repository.get(LocalDate.now(), userId);
-        if (vote != null && LocalTime.now().isAfter(LocalTime.of(11, 0))) {
-            throw new TooLateModificationException("Vote can't be changed after 11:00");
+
+        if (vote != null && LocalTime.now().isAfter(EXPIRED_TIME)) {
+            throw new TooLateModificationException("Vote can't be changed after " + EXPIRED_TIME);
         }
 
-        Menu menu = menuRepository.getWithoutDishes(date, restaurantId);
+        if (vote != null && vote.getMenu().getRestaurant().getId() == restaurantId) {
+            return vote;
+        }
+
+        Menu menu = menuRepository.getWithoutDishes(LocalDate.now(), restaurantId);
+        if (menu == null) {
+            throw new IllegalArgumentException("Voting for restaurant without today's menu is forbidden");
+        }
+
         if (vote == null) {
             return repository.save(new Vote(userRepository.getOne(userId), menu));
         } else {
@@ -46,11 +52,8 @@ public class VoteService {
         }
     }
 
-    public Vote get(LocalDate date, int userId) {
-        return repository.get(date, userId);
+    public Vote current(int userId) {
+        return repository.get(LocalDate.now(), userId);
     }
 
-    public List<Vote> getAll(int userId) {
-        return repository.getAll(userId);
-    }
 }

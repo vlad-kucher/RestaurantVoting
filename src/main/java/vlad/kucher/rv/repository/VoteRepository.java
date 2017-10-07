@@ -19,11 +19,8 @@ public interface VoteRepository extends JpaRepository<Vote, Integer>{
     @Transactional
     Vote save(Vote vote);
 
-    @Query("SELECT v FROM Vote v WHERE v.date=:date AND v.user.id=:userId")
+    @Query("SELECT v FROM Vote v JOIN FETCH v.menu m JOIN FETCH m.restaurant WHERE v.date=:date AND v.user.id=:userId")
     Vote get(@Param("date") LocalDate date, @Param("userId") int userId);
-
-    @Query("SELECT v FROM Vote v WHERE v.user.id=:userId")
-    List<Vote> getAll(@Param("userId") int userId);
 
     @Query("SELECT COUNT(v) FROM Vote v WHERE v.date=:date AND v.menu.id=:menuId")
     int countByDate(@Param("date") LocalDate date, @Param("menuId") int menuId);

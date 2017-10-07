@@ -16,7 +16,7 @@ public class Vote extends AbstractBaseEntity {
     @JsonIgnore
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "menu_id", nullable = false)
     @NotNull
     @JsonIgnore
