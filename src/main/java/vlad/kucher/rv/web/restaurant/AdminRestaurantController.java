@@ -30,6 +30,7 @@ public class AdminRestaurantController {
 
     @PostMapping
     public ResponseEntity<Restaurant> create(@RequestBody Restaurant restaurant){
+        ValidationUtil.checkNew(restaurant);
         return new ResponseEntity<>(service.create(restaurant), HttpStatus.CREATED);
     }
 

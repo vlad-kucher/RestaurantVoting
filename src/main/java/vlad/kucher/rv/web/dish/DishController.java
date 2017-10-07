@@ -17,8 +17,9 @@ public class DishController {
     private DishService service;
 
     @PostMapping
-    public ResponseEntity<Dish> create(@RequestParam String name, @RequestParam int price, @RequestParam int restaurantId){
-        return new ResponseEntity<>(service.create(new Dish(name, price), restaurantId), HttpStatus.CREATED);
+    public ResponseEntity<Dish> create(@RequestBody Dish dish, @RequestParam int restaurantId){
+        ValidationUtil.checkNew(dish);
+        return new ResponseEntity<>(service.create(dish, restaurantId), HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{id}")
