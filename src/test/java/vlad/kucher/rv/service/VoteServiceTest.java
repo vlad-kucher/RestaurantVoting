@@ -1,16 +1,9 @@
 package vlad.kucher.rv.service;
 
 import org.junit.Assume;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import vlad.kucher.rv.util.exception.TooLateModificationException;
 import vlad.kucher.rv.web.json.JsonUtil;
 
@@ -18,13 +11,7 @@ import java.time.LocalTime;
 
 import static vlad.kucher.rv.TestData.*;
 
-@ContextConfiguration("classpath:spring/spring-app.xml")
-@RunWith(SpringJUnit4ClassRunner.class)
-@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
-public class VoteServiceTest {
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
+public class VoteServiceTest extends AbstractServiceTest {
 
     @Autowired
     private VoteService service;

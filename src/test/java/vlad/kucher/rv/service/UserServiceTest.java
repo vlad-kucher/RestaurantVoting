@@ -1,23 +1,16 @@
 package vlad.kucher.rv.service;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import vlad.kucher.rv.model.Role;
 import vlad.kucher.rv.model.User;
+import vlad.kucher.rv.util.exception.NotFoundException;
 import vlad.kucher.rv.web.json.JsonUtil;
 
 import static vlad.kucher.rv.TestData.*;
 
-@ContextConfiguration("classpath:spring/spring-app.xml")
-@RunWith(SpringJUnit4ClassRunner.class)
-@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
-public class UserServiceTest {
+public class UserServiceTest extends AbstractServiceTest {
 
     @Autowired
     private UserService service;
@@ -72,5 +65,17 @@ public class UserServiceTest {
         String actual = JsonUtil.writeValue(service.get(USER_ID));
         String expected = JsonUtil.writeValue(updated);
         JSONAssert.assertEquals(expected, actual, false);
+    }
+
+    @Test
+    public void getNotFound() throws Exception {
+        thrown.expect(NotFoundException.class);
+        service.get(-1);
+    }
+
+    @Test
+    public void deleteNotFound() throws Exception {
+        thrown.expect(NotFoundException.class);
+        service.delete(-1);
     }
 }

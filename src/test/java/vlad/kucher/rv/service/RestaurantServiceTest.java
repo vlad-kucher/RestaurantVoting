@@ -1,25 +1,18 @@
 package vlad.kucher.rv.service;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import vlad.kucher.rv.model.Restaurant;
 import vlad.kucher.rv.util.RestaurantUtil;
+import vlad.kucher.rv.util.exception.NotFoundException;
 import vlad.kucher.rv.web.json.JsonUtil;
 
 import java.time.LocalDate;
 
 import static vlad.kucher.rv.TestData.*;
 
-@ContextConfiguration("classpath:spring/spring-app.xml")
-@RunWith(SpringJUnit4ClassRunner.class)
-@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
-public class RestaurantServiceTest {
+public class RestaurantServiceTest extends AbstractServiceTest {
 
     @Autowired
     private RestaurantService service;
@@ -96,4 +89,21 @@ public class RestaurantServiceTest {
         JSONAssert.assertEquals(actual, expected, false);
     }
 
+    @Test
+    public void getNotFoundWithoutMenu() throws Exception {
+        thrown.expect(NotFoundException.class);
+        service.getWithoutMenu(-1);
+    }
+
+    @Test
+    public void getNotFound() throws Exception {
+        thrown.expect(IllegalArgumentException.class);
+        service.get(LocalDate.now(),-1);
+    }
+
+    @Test
+    public void deleteNotFound() throws Exception {
+        thrown.expect(NotFoundException.class);
+        service.delete(-1);
+    }
 }

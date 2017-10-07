@@ -1,23 +1,15 @@
 package vlad.kucher.rv.service;
 
-import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import vlad.kucher.rv.model.Dish;
+import vlad.kucher.rv.util.exception.NotFoundException;
 import vlad.kucher.rv.web.json.JsonUtil;
 
 import static vlad.kucher.rv.TestData.*;
 
-@ContextConfiguration("classpath:spring/spring-app.xml")
-@RunWith(SpringJUnit4ClassRunner.class)
-@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
-public class DishServiceTest {
+public class DishServiceTest extends AbstractServiceTest {
 
     @Autowired
     private DishService service;
@@ -54,7 +46,20 @@ public class DishServiceTest {
     @Test
     public void delete() throws Exception {
         service.delete(KFC_TODAY_DISH_1.getId());
-        Assert.assertTrue(service.get(KFC_TODAY_DISH_1.getId()) == null);
+
+        thrown.expect(NotFoundException.class);
+        service.get(KFC_TODAY_DISH_1.getId());
     }
 
+    @Test
+    public void getNotFound() throws Exception {
+        thrown.expect(NotFoundException.class);
+        service.get(-1);
+    }
+
+    @Test
+    public void deleteNotFound() throws Exception {
+        thrown.expect(NotFoundException.class);
+        service.delete(-1);
+    }
 }
