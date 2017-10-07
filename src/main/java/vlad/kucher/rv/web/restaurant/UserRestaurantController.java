@@ -1,6 +1,7 @@
 package vlad.kucher.rv.web.restaurant;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import vlad.kucher.rv.service.RestaurantService;
 import vlad.kucher.rv.to.RestaurantTo;
@@ -22,7 +23,7 @@ public class UserRestaurantController {
     }
 
     @GetMapping(value = "/{id}/by")
-    public RestaurantTo getForDate(@RequestParam("date") LocalDate date, @PathVariable("id") int id){
+    public RestaurantTo getForDate(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam("date") LocalDate date, @PathVariable("id") int id){
         return service.get(date, id);
     }
 
@@ -32,7 +33,7 @@ public class UserRestaurantController {
     }
 
     @GetMapping(value = "/by")
-    public List<RestaurantTo> getAllForDate(@RequestParam("date") LocalDate date){
+    public List<RestaurantTo> getAllForDate(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam("date") LocalDate date){
         return service.getAll(date);
     }
 
