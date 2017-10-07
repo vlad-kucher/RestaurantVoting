@@ -1,6 +1,8 @@
 package vlad.kucher.rv.web.dish;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vlad.kucher.rv.model.Dish;
 import vlad.kucher.rv.service.DishService;
@@ -15,8 +17,8 @@ public class DishController {
     private DishService service;
 
     @PostMapping
-    public Dish create(@RequestParam String name, @RequestParam int price, @RequestParam int restaurantId){
-        return service.create(new Dish(name, price), restaurantId);
+    public ResponseEntity<Dish> create(@RequestParam String name, @RequestParam int price, @RequestParam int restaurantId){
+        return new ResponseEntity<>(service.create(new Dish(name, price), restaurantId), HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{id}")
