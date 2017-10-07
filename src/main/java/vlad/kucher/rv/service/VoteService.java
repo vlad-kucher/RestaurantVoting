@@ -3,6 +3,7 @@ package vlad.kucher.rv.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 import vlad.kucher.rv.model.Menu;
 import vlad.kucher.rv.model.Vote;
 import vlad.kucher.rv.repository.MenuRepository;
@@ -40,9 +41,7 @@ public class VoteService {
         }
 
         Menu menu = menuRepository.getWithoutDishes(LocalDate.now(), restaurantId);
-        if (menu == null) {
-            throw new IllegalArgumentException("Voting for restaurant without today's menu is forbidden");
-        }
+        Assert.notNull(menu, "Voting for restaurant without today's menu is forbidden");
 
         if (vote == null) {
             return repository.save(new Vote(userRepository.getOne(userId), menu));
