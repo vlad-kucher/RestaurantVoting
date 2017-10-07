@@ -7,21 +7,21 @@ import vlad.kucher.rv.model.User;
 import vlad.kucher.rv.service.UserService;
 
 @RestController
-@RequestMapping(value = ProfileUserController.REST_URL)
-public class ProfileUserController {
-    static final String REST_URL = "/rest/users/profile";
+@RequestMapping(value = ProfileController.REST_URL)
+public class ProfileController {
+    static final String REST_URL = "/rest/profile";
 
     @Autowired
     UserService service;
 
     @GetMapping
     public User get(){
-        return service.get(AuthorizedUser.getId());
+        return service.get(AuthorizedUser.id());
     }
 
     @DeleteMapping
     public void delete(){
-        service.delete(AuthorizedUser.getId());
+        service.delete(AuthorizedUser.id());
     }
 
     @PutMapping
