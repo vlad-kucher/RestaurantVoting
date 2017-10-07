@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import vlad.kucher.rv.model.Restaurant;
 import vlad.kucher.rv.service.RestaurantService;
+import vlad.kucher.rv.util.ValidationUtil;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class AdminRestaurantController {
     static final String REST_URL = "/rest/admin/restaurants";
 
     @Autowired
-    RestaurantService service;
+    private RestaurantService service;
 
     @GetMapping(value = "{id}")
     public Restaurant get(@PathVariable("id") int id){
@@ -30,8 +31,9 @@ public class AdminRestaurantController {
         return service.create(restaurant);
     }
 
-    @PutMapping
-    public void update(@RequestBody Restaurant restaurant){
+    @PutMapping(value = "/{id}")
+    public void update(@RequestBody Restaurant restaurant, @PathVariable("id") int id){
+        ValidationUtil.assureIdConsistent(restaurant, id);
         service.update(restaurant);
     }
 

@@ -14,7 +14,7 @@ public class UserRestaurantController {
     static final String REST_URL = "/rest/restaurants";
 
     @Autowired
-    RestaurantService service;
+    private RestaurantService service;
 
     @GetMapping(value = "/{id}")
     public RestaurantTo get(@PathVariable("id") int id){

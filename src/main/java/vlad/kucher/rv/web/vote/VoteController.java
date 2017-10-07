@@ -1,6 +1,8 @@
 package vlad.kucher.rv.web.vote;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vlad.kucher.rv.AuthorizedUser;
 import vlad.kucher.rv.model.Restaurant;
@@ -13,17 +15,17 @@ public class VoteController {
     final static String REST_URL = "/rest/users/votes";
 
     @Autowired
-    VoteService service;
+    private VoteService service;
 
     @PostMapping
-    public Restaurant vote(@RequestParam int restaurantId){
+    public ResponseEntity<Restaurant> vote(@RequestParam int restaurantId){
         Vote vote = service.vote(restaurantId, AuthorizedUser.id());
-        return vote.getMenu().getRestaurant();
+        return new ResponseEntity<>(vote.getMenu().getRestaurant(), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public Restaurant current(){
+    public ResponseEntity<Restaurant> current(){
         Vote current = service.current(AuthorizedUser.id());
-        return current.getMenu().getRestaurant();
+        return new ResponseEntity<>(current.getMenu().getRestaurant(), HttpStatus.OK);
     }
 }

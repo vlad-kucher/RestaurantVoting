@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import vlad.kucher.rv.model.Dish;
 import vlad.kucher.rv.service.DishService;
+import vlad.kucher.rv.util.ValidationUtil;
 
 @RestController
 @RequestMapping(value = DishController.REST_URL)
@@ -11,15 +12,16 @@ public class DishController {
     static final String REST_URL = "/rest/admin/restaurants/dishes";
 
     @Autowired
-    DishService service;
+    private DishService service;
 
     @PostMapping
     public Dish create(@RequestParam String name, @RequestParam int price, @RequestParam int restaurantId){
         return service.create(new Dish(name, price), restaurantId);
     }
 
-    @PutMapping
-    public void update(@RequestBody Dish dish){
+    @PutMapping(value = "/{id}")
+    public void update(@RequestBody Dish dish, @PathVariable("id") int id){
+        ValidationUtil.assureIdConsistent(dish, id);
         service.update(dish);
     }
 
