@@ -11,7 +11,7 @@ import vlad.kucher.rv.util.ValidationUtil;
 @RestController
 @RequestMapping(value = DishController.REST_URL)
 public class DishController {
-    static final String REST_URL = "/rest/admin/restaurants/dishes";
+    static final String REST_URL = "/rest/admin/dishes";
 
     @Autowired
     private DishService service;

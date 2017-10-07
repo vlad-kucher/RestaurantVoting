@@ -66,13 +66,13 @@ admin base64: ``YWRtaW5AZ21haWwuY29tOmFkbWlu``
 ### Test DishController:
 
 #### create
-`curl -d '{"name":"new dish", "price":777}' -H "Content-Type: application/json" -X POST http://localhost:8080/rest/admin/restaurants/dishes?restaurantId=0 -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
+`curl -d '{"name":"new dish", "price":777}' -H "Content-Type: application/json" -X POST http://localhost:8080/rest/admin/dishes?restaurantId=0 -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
 #### get
-`curl -s http://localhost:8080/rest/admin/restaurants/dishes/0 -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
+`curl -s http://localhost:8080/rest/admin/dishes/0 -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
 #### delete
-`curl -s -X DELETE http://localhost:8080/rest/admin/restaurants/dishes/0 -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
+`curl -s -X DELETE http://localhost:8080/rest/admin/dishes/0 -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
 
 ### Test UserRestaurantController:
@@ -102,10 +102,10 @@ admin base64: ``YWRtaW5AZ21haWwuY29tOmFkbWlu``
 ### Test ProfileController:
 
 #### get
-`curl -s http://localhost:8080/rest/user/profile -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
+`curl -s http://localhost:8080/rest/profile -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
 #### delete
-`curl -s -X DELETE http://localhost:8080/rest/user/profile -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
+`curl -s -X DELETE http://localhost:8080/rest/profile -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
 #### update
-`curl -s -X PUT -d '{"id":0, "name":"Updated user", "email":"user@gmail.com", "password":"password", "roles":["ROLE_USER"]}' -H 'Content-Type: application/json' http://localhost:8080/rest/user/profile -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
+`curl -s -X PUT -d '{"id":0, "name":"Updated user", "email":"user@gmail.com", "password":"password", "roles":["ROLE_USER"]}' -H 'Content-Type: application/json' http://localhost:8080/rest/profile -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`

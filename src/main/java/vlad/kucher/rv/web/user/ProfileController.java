@@ -10,7 +10,7 @@ import vlad.kucher.rv.util.ValidationUtil;
 @RestController
 @RequestMapping(value = ProfileController.REST_URL)
 public class ProfileController {
-    static final String REST_URL = "/rest/user/profile";
+    static final String REST_URL = "/rest/profile";
 
     @Autowired
     private UserService service;
