@@ -26,17 +26,6 @@ public class DishServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void update() throws Exception {
-        Dish updated = new Dish(KFC_OLD_DISH_1.getId(), KFC_OLD_DISH_1.getName(), KFC_OLD_MENU, KFC_OLD_DISH_1.getPrice());
-        updated.setName("NewName");
-        service.update(updated);
-
-        String actual = JsonUtil.writeValue(service.get(KFC_OLD_DISH_1.getId()));
-        String expected = JsonUtil.writeValue(updated);
-        JSONAssert.assertEquals(expected, actual, false);
-    }
-
-    @Test
     public void get() throws Exception {
         String actual = JsonUtil.writeValue(service.get(KFC_TODAY_DISH_1.getId()));
         String expected = JsonUtil.writeValue(KFC_TODAY_DISH_1);

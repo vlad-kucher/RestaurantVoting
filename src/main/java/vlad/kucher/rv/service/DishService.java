@@ -41,11 +41,6 @@ public class DishService {
         return repository.save(dish);
     }
 
-    public void update(Dish dish) {
-        Assert.notNull(dish, "dish must not be null");
-        repository.save(dish);
-    }
-
     public Dish get(int id) {
         return checkNotFoundWithId(repository.findOne(id), id);
     }

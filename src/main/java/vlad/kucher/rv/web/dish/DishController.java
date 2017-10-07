@@ -22,12 +22,6 @@ public class DishController {
         return new ResponseEntity<>(service.create(dish, restaurantId), HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/{id}")
-    public void update(@RequestBody Dish dish, @PathVariable("id") int id){
-        ValidationUtil.assureIdConsistent(dish, id);
-        service.update(dish);
-    }
-
     @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable("id") int id){
         service.delete(id);

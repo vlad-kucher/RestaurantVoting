@@ -12,13 +12,13 @@ import vlad.kucher.rv.service.VoteService;
 @RestController
 @RequestMapping(value = VoteController.REST_URL)
 public class VoteController {
-    final static String REST_URL = "/rest/users/votes";
+    final static String REST_URL = "/rest/vote";
 
     @Autowired
     private VoteService service;
 
-    @PostMapping
-    public ResponseEntity<Restaurant> vote(@RequestParam("restaurantId") int restaurantId){
+    @PostMapping(value = "/{restaurantId}")
+    public ResponseEntity<Restaurant> vote(@PathVariable("restaurantId") int restaurantId){
         Vote vote = service.vote(restaurantId, AuthorizedUser.id());
         return new ResponseEntity<>(vote.getMenu().getRestaurant(), HttpStatus.CREATED);
     }
