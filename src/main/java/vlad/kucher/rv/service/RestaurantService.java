@@ -3,6 +3,7 @@ package vlad.kucher.rv.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 import vlad.kucher.rv.model.Menu;
 import vlad.kucher.rv.model.Restaurant;
 import vlad.kucher.rv.repository.MenuRepository;
@@ -30,16 +31,20 @@ public class RestaurantService {
     private VoteRepository voteRepository;
 
     public Restaurant create(Restaurant restaurant){
+        Assert.notNull(restaurant, "restaurant must not be null");
         return repository.save(restaurant);
     }
 
     public void update(Restaurant restaurant){
-        repository.save(restaurant);
+        Assert.notNull(restaurant, "restaurant must not be null");
+        checkNotFoundWithId(repository.save(restaurant), restaurant.getId());
     }
 
     @Transactional
     public RestaurantTo get(LocalDate date, int id){
+        Assert.notNull(date, "date must not be null");
         Menu menu = menuRepository.get(date, id);
+        Assert.notNull(menu, "not found menu for date " + date);
         return RestaurantUtil.createTo(menu, voteRepository.countByDate(date, menu.getId()));
     }
 
@@ -48,11 +53,13 @@ public class RestaurantService {
     }
 
     public Restaurant getByName(String name) {
+        Assert.notNull(name, "name must not be null");
         return repository.getByName(name);
     }
 
     @Transactional
     public List<RestaurantTo> getAll(LocalDate date){
+        Assert.notNull(date, "date must not be null");
         return RestaurantUtil.getTo(menuRepository.getAll(date), voteRepository.countAllByDate(date));
     }
 
@@ -66,6 +73,6 @@ public class RestaurantService {
     }
 
     public Restaurant getWithoutMenu(int id){
-        return repository.findOne(id);
+        return checkNotFoundWithId(repository.findOne(id), id);
     }
 }

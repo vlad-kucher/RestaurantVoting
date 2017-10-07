@@ -8,8 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import vlad.kucher.rv.model.User;
 
-import java.util.List;
-
 @Repository
 @Transactional(readOnly = true)
 public interface UserRepository extends JpaRepository<User, Integer> {

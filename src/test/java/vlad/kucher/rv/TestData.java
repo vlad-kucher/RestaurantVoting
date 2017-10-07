@@ -12,8 +12,6 @@ public class TestData {
     private TestData() {
     }
 
-    //TODO exception tests
-
     public static final int USER_ID = 0;
     public static final int ADMIN_ID = 1;
 

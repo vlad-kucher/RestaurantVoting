@@ -10,6 +10,7 @@
         <http-basic/>
         <intercept-url pattern="/rest/admin/**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/**" access="isAuthenticated()"/>
+        <intercept-url pattern="/rest/register" access="isAnonymous()"/>
     </http>
 
     <authentication-manager>

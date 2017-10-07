@@ -3,6 +3,7 @@ package vlad.kucher.rv.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 import vlad.kucher.rv.model.Dish;
 import vlad.kucher.rv.model.Menu;
 import vlad.kucher.rv.repository.DishRepository;
@@ -28,6 +29,8 @@ public class DishService {
 
     @Transactional
     public Dish create(Dish dish, int restaurantId){
+        Assert.notNull(dish, "dish must not be null");
+
         Menu menu = menuRepository.getWithoutDishes(LocalDate.now(), restaurantId);
         if (menu == null) {
             menu = menuRepository.save(new Menu(restaurantRepository.getOne(restaurantId), LocalDate.now()));
@@ -39,11 +42,12 @@ public class DishService {
     }
 
     public void update(Dish dish) {
-        repository.save(dish);
+        Assert.notNull(dish, "dish must not be null");
+        checkNotFoundWithId(repository.save(dish), dish.getId());
     }
 
     public Dish get(int id) {
-        return repository.findOne(id);
+        return checkNotFoundWithId(repository.findOne(id), id);
     }
 
     public void delete(int id) throws NotFoundException {

@@ -1,5 +1,6 @@
 package vlad.kucher.rv.util;
 
+import vlad.kucher.rv.model.AbstractBaseEntity;
 import vlad.kucher.rv.util.exception.NotFoundException;
 
 public class ValidationUtil {
@@ -23,6 +24,21 @@ public class ValidationUtil {
     public static void checkNotFound(boolean found, String msg) {
         if (!found) {
             throw new NotFoundException("Not found entity with " + msg);
+        }
+    }
+
+    public static void checkNew(AbstractBaseEntity bean) {
+        if (!bean.isNew()) {
+            throw new IllegalArgumentException(bean + " must be new (id=null)");
+        }
+    }
+
+    public static void assureIdConsistent(AbstractBaseEntity bean, int id) {
+    // http://stackoverflow.com/a/32728226/548473
+        if (bean.isNew()) {
+            bean.setId(id);
+        } else if (bean.getId() != id) {
+            throw new IllegalArgumentException(bean + " must be with id=" + id);
         }
     }
 }

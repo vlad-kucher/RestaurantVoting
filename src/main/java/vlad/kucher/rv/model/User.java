@@ -22,7 +22,7 @@ public class User extends AbstractNamedEntity {
 
     @Column(name = "password", nullable = false)
     @NotBlank
-    @Size(min = 6)
+    @Size(min = 6, max = 50)
     private String password;
 
     @Column(name = "enabled", nullable = false)
