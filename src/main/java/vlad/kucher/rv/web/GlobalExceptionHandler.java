@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import vlad.kucher.rv.util.ValidationUtil;
 import vlad.kucher.rv.util.exception.ErrorInfo;
+import vlad.kucher.rv.util.exception.NotFoundException;
+import vlad.kucher.rv.util.exception.TooLateModificationException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolationException;
@@ -29,13 +31,25 @@ public class GlobalExceptionHandler {
         return logAndGetErrorInfo(req, e, true);
     }
 
+    @ResponseStatus(value = HttpStatus.CONFLICT)  // 409
+    @ExceptionHandler(TooLateModificationException.class)
+    public ErrorInfo toLateModification(HttpServletRequest req, TooLateModificationException e) {
+        return logAndGetErrorInfo(req, e, false);
+    }
+
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)  // 404
+    @ExceptionHandler(NotFoundException.class)
+    public ErrorInfo notFound(HttpServletRequest req, NotFoundException e) {
+        return logAndGetErrorInfo(req, e, false);
+    }
+
     @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)  // 422
     @ExceptionHandler(IllegalArgumentException.class)
     public ErrorInfo illegal(HttpServletRequest req, IllegalArgumentException e) {
         return logAndGetErrorInfo(req, e, false);
     }
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // 500
     @ExceptionHandler(Exception.class)
     public ErrorInfo handleError(HttpServletRequest req, Exception e) {
         return logAndGetErrorInfo(req, e, true);
