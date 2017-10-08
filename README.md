@@ -23,7 +23,7 @@ As a result, provide a link to github repository. It should contain the code, RE
 
 -----------------------------
 
-from the same directory as your root pom.xml, type:
+from the same directory as pom.xml, type:
 
 `mvn jetty:run`
 
