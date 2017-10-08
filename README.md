@@ -47,7 +47,7 @@ admin base64: `YWRtaW5AZ21haWwuY29tOmFkbWlu`
 
 ### VoteController (for user):
 
-#### vote (after 11:00 we will receive Http status Conflict 409)
+#### vote (after 11:00 we will receive 409 Conflict)
 `curl -X POST http://localhost:8080/rest/vote/1 -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
 #### get current (today's) vote
