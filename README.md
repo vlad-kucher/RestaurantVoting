@@ -83,7 +83,7 @@ admin base64: `YWRtaW5AZ21haWwuY29tOmFkbWlu`
 `curl -s -X DELETE http://localhost:8080/rest/admin/dishes/0 -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
 
-### UserRestaurantController (for user), returns only restaurants which have menu for a date:
+### UserRestaurantController (for user), returns only restaurants which have a menu for the date:
 
 #### get restaurant with menu and rating for today
 `curl -s http://localhost:8080/rest/restaurants/0 -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
@@ -97,7 +97,7 @@ admin base64: `YWRtaW5AZ21haWwuY29tOmFkbWlu`
 #### get all restaurants with menu and rating for the date
 `curl -s http://localhost:8080/rest/restaurants/by?date=2017-09-29 -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
-#### get one restaurants with menus and ratings for all dates
+#### get one restaurant with menus and ratings for all dates
 `curl -s http://localhost:8080/rest/restaurants/0/all -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
 
