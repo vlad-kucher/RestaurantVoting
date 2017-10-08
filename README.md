@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/vlad-kucher/RestaurantVoting.svg?branch=master)](https://travis-ci.org/vlad-kucher/RestaurantVoting)
 [![Dependency Status](https://www.versioneye.com/user/projects/59d978d815f0d7004b3e737c/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/59d978d815f0d7004b3e737c)
 
-Design and implement a REST API using Hibernate/Spring/SpringMVC (or Spring-Boot) **without frontend**.
+Design and implement a REST API using Hibernate/Spring/SpringMVC **without frontend**.
 
 The task is:
 
