@@ -62,7 +62,7 @@ admin base64: `YWRtaW5AZ21haWwuY29tOmFkbWlu`
 #### get all restaurants
 `curl -s http://localhost:8080/rest/admin/restaurants/ -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
-#### create restaurant
+#### create restaurant (name)
 `curl -d '{"name":"new restaurant"}' -H "Content-Type: application/json" -X POST http://localhost:8080/rest/admin/restaurants/ -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
 #### update restaurnat
@@ -77,7 +77,7 @@ admin base64: `YWRtaW5AZ21haWwuY29tOmFkbWlu`
 
 ### DishController (for admin):
 
-#### create dish for restaurant id
+#### create dish (name and price in cents) for restaurant id 
 `curl -d '{"name":"new dish", "price":777}' -H "Content-Type: application/json" -X POST http://localhost:8080/rest/admin/dishes?restaurantId=0 -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
 #### get dish by id
@@ -107,7 +107,7 @@ admin base64: `YWRtaW5AZ21haWwuY29tOmFkbWlu`
 
 ### RegisterController (for unauthorized):
 
-#### register user
+#### register user (name, email and password are necessary)
 `curl -d '{"name":"newuser", "email":"new@gmail.com", "password":"123456", "roles" : ["ROLE_USER"]}' -H "Content-Type: application/json" -X POST http://localhost:8080/rest/register`
 
 
