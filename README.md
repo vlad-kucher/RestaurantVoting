@@ -19,93 +19,101 @@ As a result, provide a link to github repository. It should contain the code, RE
 
 -----------------------------
 
-user email: ``user@gmail.com``
-user password: ``password``
-user base64: ``dXNlckBnbWFpbC5jb206cGFzc3dvcmQ=``
+from the same directory as your root pom.xml, type:
 
-admin email: ``admin@gmail.com``
-admin password: ``admin``
-admin base64: ``YWRtaW5AZ21haWwuY29tOmFkbWlu``
+`mvn jetty:run`
+
+(you must have a maven)
 
 -----------------------------
 
-### Tests 
+user email: `user@gmail.com`
+user password: `password`
+user base64: `dXNlckBnbWFpbC5jb206cGFzc3dvcmQ=`
+
+admin email: `admin@gmail.com`
+admin password: `admin`
+admin base64: `YWRtaW5AZ21haWwuY29tOmFkbWlu`
+
+-----------------------------
+
+### Curl:
 > For windows use `Git Bash`
 
 
-### Test VoteController:
+### VoteController (for user):
 
-#### vote
+#### vote (after 11:00 we will receive Http status Conflict 409)
 `curl -X POST http://localhost:8080/rest/vote/1 -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
-#### get current
+#### get current (today's) vote
 `curl -s http://localhost:8080/rest/vote -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
 
-### Test AdminRestaurantController:
+### AdminRestaurantController (for admin):
 
-#### get
+#### get restaurant by id
 `curl -s http://localhost:8080/rest/admin/restaurants/0 -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
-#### get all
+#### get all restaurants
 `curl -s http://localhost:8080/rest/admin/restaurants/ -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
-#### create
+#### create restaurant
 `curl -d '{"name":"new restaurant"}' -H "Content-Type: application/json" -X POST http://localhost:8080/rest/admin/restaurants/ -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
-#### update
+#### update restaurnat
 `curl -s -X PUT -d '{"id":2, "name":"New name"}' -H 'Content-Type: application/json' http://localhost:8080/rest/admin/restaurants/2 -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
-#### delete
+#### delete restaurant
 `curl -s -X DELETE http://localhost:8080/rest/admin/restaurants/2 -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
-#### get by name
+#### get restaurant by name
 `curl -s http://localhost:8080/rest/admin/restaurants/by?name=KFC -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
 
-### Test DishController:
+### DishController (for admin):
 
-#### create
+#### create dish for restaurant id
 `curl -d '{"name":"new dish", "price":777}' -H "Content-Type: application/json" -X POST http://localhost:8080/rest/admin/dishes?restaurantId=0 -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
-#### get
+#### get dish by id
 `curl -s http://localhost:8080/rest/admin/dishes/0 -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
-#### delete
+#### delete dish by id
 `curl -s -X DELETE http://localhost:8080/rest/admin/dishes/0 -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
 
-### Test UserRestaurantController:
+### UserRestaurantController (for user), returns only restaurants which have menu for a date:
 
-#### get
+#### get restaurant with menu and rating for today
 `curl -s http://localhost:8080/rest/restaurants/0 -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
-#### get for date
+#### get restaurant with menu and rating for the date
 `curl -s http://localhost:8080/rest/restaurants/0/by?date=2017-10-07 -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
-#### get all
+#### get all restaurants with menu and rating for today
 `curl -s http://localhost:8080/rest/restaurants -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
-#### get all for date
+#### get all restaurants with menu and rating for the date
 `curl -s http://localhost:8080/rest/restaurants/by?date=2017-09-29 -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
-#### get one with all menus
+#### get one restaurants with menus and ratings for all dates
 `curl -s http://localhost:8080/rest/restaurants/0/all -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
 
-### Test RegisterController:
+### RegisterController (for unauthorized):
 
 #### register user
 `curl -d '{"name":"newuser", "email":"new@gmail.com", "password":"123456", "roles" : ["ROLE_USER"]}' -H "Content-Type: application/json" -X POST http://localhost:8080/rest/register`
 
 
-### Test ProfileController:
+### ProfileController (for user and admin):
 
 #### get
 `curl -s http://localhost:8080/rest/profile -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
-#### delete
+#### delete account
 `curl -s -X DELETE http://localhost:8080/rest/profile -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
-#### update
+#### update profile
 `curl -s -X PUT -d '{"id":0, "name":"Updated user", "email":"user@gmail.com", "password":"password", "roles":["ROLE_USER"]}' -H 'Content-Type: application/json' http://localhost:8080/rest/profile -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
