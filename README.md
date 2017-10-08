@@ -1,3 +1,7 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b76156f45d66430a9b6d9cfd97026f85)](https://www.codacy.com/app/vlad-kucher/RestaurantVoting?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=vlad-kucher/RestaurantVoting&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/vlad-kucher/RestaurantVoting.svg?branch=master)](https://travis-ci.org/vlad-kucher/RestaurantVoting)
+[![Dependency Status](https://www.versioneye.com/user/projects/59d978d815f0d7004b3e737c/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/59d978d815f0d7004b3e737c)
+
 Design and implement a REST API using Hibernate/Spring/SpringMVC (or Spring-Boot) **without frontend**.
 
 The task is:
@@ -23,7 +27,7 @@ from the same directory as your root pom.xml, type:
 
 `mvn jetty:run`
 
-(you must have a maven)
+(you must have maven)
 
 -----------------------------
 
