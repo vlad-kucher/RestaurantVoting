@@ -23,7 +23,7 @@ public class AdminRestaurantController {
     @Autowired
     private RestaurantService service;
 
-    @GetMapping(value = "{id}")
+    @GetMapping(value = "/{id}")
     public Restaurant get(@PathVariable("id") int id){
         log.info("get {}", id);
         return service.getWithoutMenu(id);

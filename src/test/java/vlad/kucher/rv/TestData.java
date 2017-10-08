@@ -15,6 +15,8 @@ public class TestData {
     public static final int USER_ID = 0;
     public static final int ADMIN_ID = 1;
 
+    public static final LocalDate OLD_DATE = LocalDate.of(2017, 9, 29);
+
     public static final User USER = new User(USER_ID, "User", "user@gmail.com", "password", Role.ROLE_USER);
     public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@gmail.com", "admin", Role.ROLE_ADMIN);
 
@@ -40,19 +42,20 @@ public class TestData {
     public static final Dish PUZATA_HATA_OLD_DISH_2 = new Dish(11, "Колбаска", null, 5000);
 
     public static final Menu KFC_TODAY_MENU = new Menu(0, KFC, Arrays.asList(KFC_TODAY_DISH_1, KFC_TODAY_DISH_2), LocalDate.now());
-    public static final Menu KFC_OLD_MENU = new Menu(1, KFC, Arrays.asList(KFC_OLD_DISH_1, KFC_OLD_DISH_2), LocalDate.of(2017, 9, 29));
+    public static final Menu KFC_OLD_MENU = new Menu(1, KFC, Arrays.asList(KFC_OLD_DISH_1, KFC_OLD_DISH_2), OLD_DATE);
     public static final Menu BURGER_KING_TODAY_MENU = new Menu(2, BURGER_KING, Arrays.asList(BURGER_KING_TODAY_DISH_1, BURGER_KING_TODAY_DISH_2), LocalDate.now());
-    public static final Menu BURGER_KING_OLD_MENU = new Menu(3, BURGER_KING, Arrays.asList(BURGER_KING_OLD_DISH_1, BURGER_KING_OLD_DISH_2), LocalDate.of(2017, 9, 29));
+    public static final Menu BURGER_KING_OLD_MENU = new Menu(3, BURGER_KING, Arrays.asList(BURGER_KING_OLD_DISH_1, BURGER_KING_OLD_DISH_2), OLD_DATE);
     public static final Menu PUZATA_HATA_TODAY_MENU = new Menu(4, PUZATA_HATA, Arrays.asList(PUZATA_HATA_TODAY_DISH_1, PUZATA_HATA_TODAY_DISH_2), LocalDate.now());
-    public static final Menu PUZATA_HATA_OLD_MENU = new Menu(5, PUZATA_HATA, Arrays.asList(PUZATA_HATA_OLD_DISH_1, PUZATA_HATA_OLD_DISH_2), LocalDate.of(2017, 9, 29));
+    public static final Menu PUZATA_HATA_OLD_MENU = new Menu(5, PUZATA_HATA, Arrays.asList(PUZATA_HATA_OLD_DISH_1, PUZATA_HATA_OLD_DISH_2), OLD_DATE);
 
     public static final Vote USER_TODAY_VOTE = new Vote(0, USER, KFC_TODAY_MENU, LocalDate.now());
-    public static final Vote USER_OLD_VOTE = new Vote(1, USER, KFC_OLD_MENU, LocalDate.of(2017, 9, 29));
+    public static final Vote USER_OLD_VOTE = new Vote(1, USER, KFC_OLD_MENU, OLD_DATE);
     public static final Vote ADMIN_TODAY_VOTE = new Vote(2, ADMIN, KFC_TODAY_MENU, LocalDate.now());
-    public static final Vote ADMIN_OLD_VOTE = new Vote(3, ADMIN, KFC_OLD_MENU, LocalDate.of(2017, 9, 29));
+    public static final Vote ADMIN_OLD_VOTE = new Vote(3, ADMIN, KFC_OLD_MENU, OLD_DATE);
 
     public static final List<Count> COUNTS = Arrays.asList(new Count(0, 2), new Count(1, 2));
 
     public static final List<Menu> TODAY_MENUS = Arrays.asList(KFC_TODAY_MENU, BURGER_KING_TODAY_MENU, PUZATA_HATA_TODAY_MENU);
+    public static final List<Menu> OLD_MENUS = Arrays.asList(KFC_OLD_MENU, BURGER_KING_OLD_MENU, PUZATA_HATA_OLD_MENU);
     public static final List<Menu> KFC_MENUS = Arrays.asList(KFC_TODAY_MENU, KFC_OLD_MENU);
 }
