@@ -10,7 +10,6 @@ import vlad.kucher.rv.model.User;
 import vlad.kucher.rv.service.UserService;
 import vlad.kucher.rv.util.ValidationUtil;
 
-import java.time.LocalDate;
 import java.util.EnumSet;
 
 import static org.slf4j.LoggerFactory.getLogger;

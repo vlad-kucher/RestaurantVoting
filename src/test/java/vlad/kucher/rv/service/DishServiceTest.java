@@ -15,7 +15,7 @@ public class DishServiceTest extends AbstractServiceTest {
     private DishService service;
 
     @Test
-    public void create() throws Exception {
+    public void testCreate() throws Exception {
         Dish newDish = new Dish(null, "NewDish", KFC_TODAY_MENU, 7777);
         Dish created = service.create(newDish, KFC_ID);
         newDish.setId(created.getId());
@@ -26,14 +26,14 @@ public class DishServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void get() throws Exception {
+    public void testGet() throws Exception {
         String actual = JsonUtil.writeValue(service.get(KFC_TODAY_DISH_1.getId()));
         String expected = JsonUtil.writeValue(KFC_TODAY_DISH_1);
         JSONAssert.assertEquals(expected, actual, false);
     }
 
     @Test
-    public void delete() throws Exception {
+    public void testGelete() throws Exception {
         service.delete(KFC_TODAY_DISH_1.getId());
 
         thrown.expect(NotFoundException.class);
@@ -41,13 +41,13 @@ public class DishServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void getNotFound() throws Exception {
+    public void testGetNotFound() throws Exception {
         thrown.expect(NotFoundException.class);
         service.get(-1);
     }
 
     @Test
-    public void deleteNotFound() throws Exception {
+    public void testDeleteNotFound() throws Exception {
         thrown.expect(NotFoundException.class);
         service.delete(-1);
     }

@@ -9,9 +9,6 @@ import java.util.List;
 
 public class TestData {
 
-    private TestData() {
-    }
-
     public static final int USER_ID = 0;
     public static final int ADMIN_ID = 1;
 
@@ -58,4 +55,7 @@ public class TestData {
     public static final List<Menu> TODAY_MENUS = Arrays.asList(KFC_TODAY_MENU, BURGER_KING_TODAY_MENU, PUZATA_HATA_TODAY_MENU);
     public static final List<Menu> OLD_MENUS = Arrays.asList(KFC_OLD_MENU, BURGER_KING_OLD_MENU, PUZATA_HATA_OLD_MENU);
     public static final List<Menu> KFC_MENUS = Arrays.asList(KFC_TODAY_MENU, KFC_OLD_MENU);
+
+    private TestData() {
+    }
 }

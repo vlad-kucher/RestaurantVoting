@@ -18,7 +18,7 @@ public class UserServiceTest extends AbstractServiceTest {
     private UserService service;
 
     @Test
-    public void create() throws Exception {
+    public void testCreate() throws Exception {
         User newUser = new User(null, "New name", "new@gmail.com", "New pass", Role.ROLE_USER);
         User created = service.create(newUser);
         newUser.setId(created.getId());
@@ -29,7 +29,7 @@ public class UserServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void delete() throws Exception {
+    public void testDelete() throws Exception {
         service.delete(USER_ID);
 
         String actual = JsonUtil.writeArray(service.getAll().toArray());
@@ -38,28 +38,28 @@ public class UserServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void get() throws Exception {
+    public void testGet() throws Exception {
         String actual = JsonUtil.writeValue(service.get(USER_ID));
         String expected = JsonUtil.writeValue(USER);
         JSONAssert.assertEquals(expected, actual, false);
     }
 
     @Test
-    public void getByEmail() throws Exception {
+    public void testGetByEmail() throws Exception {
         String actual = JsonUtil.writeValue(service.getByEmail(ADMIN.getEmail()));
         String expected = JsonUtil.writeValue(ADMIN);
         JSONAssert.assertEquals(expected, actual, false);
     }
 
     @Test
-    public void getAll() throws Exception {
+    public void testGetAll() throws Exception {
         String actual = JsonUtil.writeArray(service.getAll().toArray());
         String expected = JsonUtil.writeArray(USER, ADMIN);
         JSONAssert.assertEquals(expected, actual, false);
     }
 
     @Test
-    public void update() throws Exception {
+    public void testUpdate() throws Exception {
         User updated = new User(USER);
         updated.setName("NewName");
         service.update(updated);
@@ -70,13 +70,13 @@ public class UserServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void getNotFound() throws Exception {
+    public void testGetNotFound() throws Exception {
         thrown.expect(NotFoundException.class);
         service.get(-1);
     }
 
     @Test
-    public void deleteNotFound() throws Exception {
+    public void testDeleteNotFound() throws Exception {
         thrown.expect(NotFoundException.class);
         service.delete(-1);
     }

@@ -18,7 +18,7 @@ public class VoteServiceTest extends AbstractServiceTest {
     private VoteService service;
 
     @Test
-    public void vote() throws Exception {
+    public void testVote() throws Exception {
         Assume.assumeFalse(LocalTime.now().isAfter(VoteUtil.EXPIRED_TIME));
         service.vote(PUZATA_HATA_ID, USER_ID);
 
@@ -28,7 +28,7 @@ public class VoteServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void voteExpired() throws Exception {
+    public void testVoteExpired() throws Exception {
         Assume.assumeTrue(LocalTime.now().isAfter(VoteUtil.EXPIRED_TIME));
 
         thrown.expect(TooLateModificationException.class);
@@ -36,7 +36,7 @@ public class VoteServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void current() throws Exception {
+    public void testCurrent() throws Exception {
         String actual = JsonUtil.writeValue(service.current(USER_ID));
         String expected = JsonUtil.writeValue(USER_TODAY_VOTE);
         JSONAssert.assertEquals(expected, actual, false);

@@ -18,7 +18,7 @@ public class RestaurantServiceTest extends AbstractServiceTest {
     private RestaurantService service;
 
     @Test
-    public void create() throws Exception {
+    public void testCreate() throws Exception {
         Restaurant newRestaurant = new Restaurant("New restaurant");
         Restaurant created = service.create(newRestaurant);
         newRestaurant.setId(created.getId());
@@ -29,7 +29,7 @@ public class RestaurantServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void update() throws Exception {
+    public void testUpdate() throws Exception {
         Restaurant updated = new Restaurant(KFC.getId(), "New name");
         service.update(updated);
 
@@ -39,14 +39,14 @@ public class RestaurantServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void get() throws Exception {
+    public void testGet() throws Exception {
         String actual = JsonUtil.writeValue(service.get(LocalDate.now(), 0));
         String expected = JsonUtil.writeValue(RestaurantUtil.createTo(KFC_TODAY_MENU, 2));
         JSONAssert.assertEquals(expected, actual, false);
     }
 
     @Test
-    public void delete() throws Exception {
+    public void testDelete() throws Exception {
         service.delete(PUZATA_HATA_ID);
 
         String actual = JsonUtil.writeArray(service.getAllWithoutMenu().toArray());
@@ -55,54 +55,54 @@ public class RestaurantServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void getByName() throws Exception {
+    public void testGetByName() throws Exception {
         String actual = JsonUtil.writeValue(service.getByName(KFC.getName()));
         String expected = JsonUtil.writeValue(KFC);
         JSONAssert.assertEquals(expected, actual, false);
     }
 
     @Test
-    public void getAll() throws Exception {
+    public void testGetAll() throws Exception {
         String actual = JsonUtil.writeArray(service.getAll(LocalDate.now()).toArray());
         String expected = JsonUtil.writeArray(RestaurantUtil.getTo(TODAY_MENUS, COUNTS).toArray());
         JSONAssert.assertEquals(expected, actual, false);
     }
 
     @Test
-    public void getOneWithAllMenus() throws Exception {
+    public void testGetOneWithAllMenus() throws Exception {
         String actual = JsonUtil.writeArray(service.getOneWithAllMenus(0).toArray());
         String expected = JsonUtil.writeArray(RestaurantUtil.getTo(KFC_MENUS, COUNTS).toArray());
         JSONAssert.assertEquals(expected, actual, false);
     }
 
     @Test
-    public void getAllWithoutMenu() throws Exception {
+    public void testGetAllWithoutMenu() throws Exception {
         String actual = JsonUtil.writeArray(service.getAllWithoutMenu().toArray());
         String expected = JsonUtil.writeArray(KFC, BURGER_KING, PUZATA_HATA);
         JSONAssert.assertEquals(expected, actual, false);
     }
 
     @Test
-    public void getWithoutMenu() throws Exception {
+    public void testGetWithoutMenu() throws Exception {
         String actual = JsonUtil.writeValue(service.getWithoutMenu(KFC_ID));
         String expected = JsonUtil.writeValue(KFC);
         JSONAssert.assertEquals(actual, expected, false);
     }
 
     @Test
-    public void getNotFoundWithoutMenu() throws Exception {
+    public void testGetNotFoundWithoutMenu() throws Exception {
         thrown.expect(NotFoundException.class);
         service.getWithoutMenu(-1);
     }
 
     @Test
-    public void getNotFound() throws Exception {
+    public void testGetNotFound() throws Exception {
         thrown.expect(IllegalArgumentException.class);
         service.get(LocalDate.now(),-1);
     }
 
     @Test
-    public void deleteNotFound() throws Exception {
+    public void testDeleteNotFound() throws Exception {
         thrown.expect(NotFoundException.class);
         service.delete(-1);
     }
