@@ -2,6 +2,7 @@ package vlad.kucher.rv.web.user;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import vlad.kucher.rv.AuthorizedUser;
 import vlad.kucher.rv.model.User;
@@ -21,21 +22,21 @@ public class ProfileController {
     private UserService service;
 
     @GetMapping
-    public User get(){
-        log.info("get {}", AuthorizedUser.id());
-        return service.get(AuthorizedUser.id());
+    public User get(@AuthenticationPrincipal AuthorizedUser authorizedUser){
+        log.info("get {}", authorizedUser.getId());
+        return service.get(authorizedUser.getId());
     }
 
     @DeleteMapping
-    public void delete(){
-        log.info("delete {}", AuthorizedUser.id());
-        service.delete(AuthorizedUser.id());
+    public void delete(@AuthenticationPrincipal AuthorizedUser authorizedUser){
+        log.info("delete {}", authorizedUser.getId());
+        service.delete(authorizedUser.getId());
     }
 
     @PutMapping
-    public void update(@RequestBody User user){
-        ValidationUtil.assureIdConsistent(user, AuthorizedUser.id());
-        log.info("update {} with id=", user, AuthorizedUser.id());
+    public void update(@RequestBody User user, @AuthenticationPrincipal AuthorizedUser authorizedUser){
+        ValidationUtil.assureIdConsistent(user, authorizedUser.getId());
+        log.info("update {} with id=", user, authorizedUser.getId());
         service.update(user);
     }
 }
