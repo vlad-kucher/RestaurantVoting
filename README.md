@@ -77,7 +77,7 @@ admin base64: `YWRtaW5AZ21haWwuY29tOmFkbWlu`
 
 ### DishController (for admin):
 
-#### create dish (name and price in cents) for restaurant id 
+#### add dish (name and price in cents) to today's menu for restaurant (id) 
 `curl -d '{"name":"new dish", "price":777}' -H "Content-Type: application/json" -X POST http://localhost:8080/rest/admin/dishes?restaurantId=0 -H'Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'`
 
 #### get dish by id
