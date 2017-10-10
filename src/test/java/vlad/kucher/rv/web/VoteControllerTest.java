@@ -50,6 +50,6 @@ public class VoteControllerTest  extends AbstractControllerTest {
                 .with(userHttpBasic(USER)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(content().json(JsonUtil.writeValue(USER_TODAY_VOTE.getMenu().getRestaurant())));
+                .andExpect(content().json(JsonUtil.writeValue(USER_TODAY_VOTE.getRestaurant())));
     }
 }

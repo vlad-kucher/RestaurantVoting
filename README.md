@@ -101,9 +101,6 @@ admin base64: `YWRtaW5AZ21haWwuY29tOmFkbWlu`
 #### get all restaurants with menu and rating for the date
 `curl -s http://localhost:8080/rest/restaurants/by?date=2017-09-29 -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
-#### get one restaurant with menus and ratings for all dates
-`curl -s http://localhost:8080/rest/restaurants/0/all -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
-
 
 ### RegisterController (for unauthorized):
 

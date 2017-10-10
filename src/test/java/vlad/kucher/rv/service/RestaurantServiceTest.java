@@ -69,13 +69,6 @@ public class RestaurantServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void testGetOneWithAllMenus() throws Exception {
-        String actual = JsonUtil.writeArray(service.getOneWithAllMenus(0).toArray());
-        String expected = JsonUtil.writeArray(RestaurantUtil.getTo(KFC_MENUS, COUNTS).toArray());
-        JSONAssert.assertEquals(expected, actual, false);
-    }
-
-    @Test
     public void testGetAllWithoutMenu() throws Exception {
         String actual = JsonUtil.writeArray(service.getAllWithoutMenu().toArray());
         String expected = JsonUtil.writeArray(KFC, BURGER_KING, PUZATA_HATA);

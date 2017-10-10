@@ -31,7 +31,7 @@ public class VoteService {
 
         VoteUtil.checkExpired(vote);
 
-        if (vote != null && vote.getMenu().getRestaurant().getId() == restaurantId) {
+        if (vote != null && vote.getRestaurant().getId() == restaurantId) {
             return vote;
         }
 
@@ -39,9 +39,9 @@ public class VoteService {
         Assert.notNull(menu, "Voting for restaurant without today's menu is forbidden");
 
         if (vote == null) {
-            return repository.save(new Vote(userRepository.getOne(userId), menu));
+            return repository.save(new Vote(userRepository.getOne(userId), menu.getRestaurant()));
         } else {
-            vote.setMenu(menu);
+            vote.setRestaurant(menu.getRestaurant());
             return repository.save(vote);
         }
     }

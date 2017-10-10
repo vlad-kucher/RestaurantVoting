@@ -31,6 +31,6 @@ INSERT INTO dishes (id, name, price, menu_id) VALUES
   (8, 'Красный борщ', 9999, 4),       (9, 'Домашнаяя колбаска', 5555, 4),
   (10, 'Борщ', 9000, 5),              (11, 'Колбаска', 5000, 5);
 
-INSERT INTO votes (id, user_id, menu_id, date) VALUES
-  (0, 0, 0, TODAY()), (1, 0, 1, '2017-09-29'),
-  (2, 1, 0, TODAY()), (3, 1, 1, '2017-09-29');
+INSERT INTO votes (id, user_id, restaurant_id, date) VALUES
+  (0, 0, 0, TODAY()), (1, 0, 0, '2017-09-29'),
+  (2, 1, 0, TODAY()), (3, 1, 0, '2017-09-29');

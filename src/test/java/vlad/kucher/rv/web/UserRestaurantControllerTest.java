@@ -2,6 +2,7 @@ package vlad.kucher.rv.web;
 
 import org.junit.Test;
 import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.ResultActions;
 import vlad.kucher.rv.util.RestaurantUtil;
 import vlad.kucher.rv.web.json.JsonUtil;
 
@@ -55,14 +56,4 @@ public class UserRestaurantControllerTest  extends AbstractControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(content().json(JsonUtil.writeArray(RestaurantUtil.getTo(OLD_MENUS, COUNTS).toArray())));
     }
-
-    @Test
-    public void testGetOneWithAllMenus() throws Exception {
-        mockMvc.perform(get(REST_URL + '/' + KFC_ID + "/all")
-                .with(userHttpBasic(USER)))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(content().json(JsonUtil.writeArray(RestaurantUtil.getTo(KFC_MENUS, COUNTS).toArray())));
-    }
-
 }

@@ -17,10 +17,10 @@ public class Vote extends AbstractBaseEntity {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "menu_id", nullable = false)
+    @JoinColumn(name = "restaurant_id", nullable = false)
     @NotNull
     @JsonIgnore
-    private Menu menu;
+    private Restaurant restaurant;
 
     @Column(name = "date", nullable = false)
     @NotNull
@@ -29,16 +29,16 @@ public class Vote extends AbstractBaseEntity {
     public Vote(){
     }
 
-    public Vote(User user, Menu menu) {
+    public Vote(User user, Restaurant restaurant) {
         this.user = user;
-        this.menu = menu;
+        this.restaurant = restaurant;
         this.date = LocalDate.now();
     }
 
-    public Vote(Integer id, User user, Menu menu, LocalDate date) {
+    public Vote(Integer id, User user, Restaurant restaurant, LocalDate date) {
         super(id);
         this.user = user;
-        this.menu = menu;
+        this.restaurant = restaurant;
         this.date = date;
     }
 
@@ -50,12 +50,12 @@ public class Vote extends AbstractBaseEntity {
         this.user = user;
     }
 
-    public Menu getMenu() {
-        return menu;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setMenu(Menu menu) {
-        this.menu = menu;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public LocalDate getDate() {
@@ -70,7 +70,7 @@ public class Vote extends AbstractBaseEntity {
     public String toString() {
         return "Vote{" +
                 "userId=" + user.getId() +
-                ", menuId=" + menu.getId() +
+                ", restaurant=" + restaurant +
                 ", date=" + date +
                 '}';
     }

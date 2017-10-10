@@ -45,7 +45,7 @@ public class RestaurantService {
         Assert.notNull(date, "date must not be null");
         Menu menu = menuRepository.get(date, id);
         Assert.notNull(menu, "not found menu for date " + date);
-        return RestaurantUtil.createTo(menu, voteRepository.countByDate(date, menu.getId()));
+        return RestaurantUtil.createTo(menu, voteRepository.countByDate(date, menu.getRestaurant().getId()));
     }
 
     public void delete(int id) throws NotFoundException {
@@ -61,11 +61,6 @@ public class RestaurantService {
     public List<RestaurantTo> getAll(LocalDate date){
         Assert.notNull(date, "date must not be null");
         return RestaurantUtil.getTo(menuRepository.getAll(date), voteRepository.countAllByDate(date));
-    }
-
-    @Transactional
-    public List<RestaurantTo> getOneWithAllMenus(int id){
-        return RestaurantUtil.getTo(menuRepository.getAllForRestaurant(id), voteRepository.countAllByRestaurant(id));
     }
 
     public List<Restaurant> getAllWithoutMenu(){

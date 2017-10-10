@@ -22,7 +22,7 @@ public class VoteServiceTest extends AbstractServiceTest {
         Assume.assumeFalse(LocalTime.now().isAfter(VoteUtil.EXPIRED_TIME));
         service.vote(PUZATA_HATA_ID, USER_ID);
 
-        String actual = JsonUtil.writeValue(service.current(USER_ID).getMenu().getRestaurant());
+        String actual = JsonUtil.writeValue(service.current(USER_ID).getRestaurant());
         String expected = JsonUtil.writeValue(PUZATA_HATA);
         JSONAssert.assertEquals(expected, actual, false);
     }

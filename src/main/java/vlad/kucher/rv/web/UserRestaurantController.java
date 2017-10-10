@@ -45,10 +45,4 @@ public class UserRestaurantController {
         log.info("getAllForDate {}", date);
         return service.getAll(date);
     }
-
-    @GetMapping(value = "/{id}/all")
-    public List<RestaurantTo> getOneWithAllMenus(@PathVariable("id") int id) {
-        log.info("getOneWithAllMenus {}", id);
-        return service.getOneWithAllMenus(id);
-    }
 }

@@ -15,12 +15,12 @@ public class RestaurantUtil {
     public static List<RestaurantTo> getTo(List<Menu> menus, List<Count> counts){
         Map<Integer, Integer> rating = new HashMap<>();
         for (Count c : counts) {
-            rating.put(c.getMenuId(), (int)c.getCount());
+            rating.put(c.getRestaurantId(), (int)c.getCount());
         }
 
         List<RestaurantTo> toList = new ArrayList<>();
         for (Menu m : menus) {
-            toList.add(createTo(m, rating.getOrDefault(m.getId(), 0)));
+            toList.add(createTo(m, rating.getOrDefault(m.getRestaurant().getId(), 0)));
         }
 
         return toList;

@@ -27,13 +27,13 @@ public class VoteController {
     public ResponseEntity<Restaurant> vote(@PathVariable("restaurantId") int restaurantId, @AuthenticationPrincipal AuthorizedUser authorizedUser){
         log.info("user {} vote for restaurant {}", authorizedUser.getId(), restaurantId);
         Vote vote = service.vote(restaurantId, authorizedUser.getId());
-        return new ResponseEntity<>(vote.getMenu().getRestaurant(), HttpStatus.CREATED);
+        return new ResponseEntity<>(vote.getRestaurant(), HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<Restaurant> current(@AuthenticationPrincipal AuthorizedUser authorizedUser){
         log.info("current vote of user {}", authorizedUser.getId());
         Vote current = service.current(authorizedUser.getId());
-        return new ResponseEntity<>(current.getMenu().getRestaurant(), HttpStatus.OK);
+        return new ResponseEntity<>(current.getRestaurant(), HttpStatus.OK);
     }
 }
