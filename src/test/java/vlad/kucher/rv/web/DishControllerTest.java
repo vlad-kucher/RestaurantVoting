@@ -1,4 +1,4 @@
-package vlad.kucher.rv.web.dish;
+package vlad.kucher.rv.web;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -10,7 +10,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import vlad.kucher.rv.model.Dish;
 import vlad.kucher.rv.service.DishService;
 import vlad.kucher.rv.util.exception.NotFoundException;
-import vlad.kucher.rv.web.AbstractControllerTest;
 import vlad.kucher.rv.web.json.JsonUtil;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -22,7 +21,7 @@ import static vlad.kucher.rv.TestData.ADMIN;
 import static vlad.kucher.rv.TestData.KFC;
 import static vlad.kucher.rv.TestData.KFC_TODAY_DISH_1;
 import static vlad.kucher.rv.TestUtil.userHttpBasic;
-import static vlad.kucher.rv.web.dish.DishController.REST_URL;
+import static vlad.kucher.rv.web.DishController.REST_URL;
 
 public class DishControllerTest extends AbstractControllerTest{
 

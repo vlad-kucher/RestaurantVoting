@@ -1,4 +1,4 @@
-package vlad.kucher.rv.web.vote;
+package vlad.kucher.rv.web;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

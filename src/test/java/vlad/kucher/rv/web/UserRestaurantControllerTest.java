@@ -1,9 +1,8 @@
-package vlad.kucher.rv.web.restaurant;
+package vlad.kucher.rv.web;
 
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import vlad.kucher.rv.util.RestaurantUtil;
-import vlad.kucher.rv.web.AbstractControllerTest;
 import vlad.kucher.rv.web.json.JsonUtil;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -11,7 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static vlad.kucher.rv.TestData.*;
 import static vlad.kucher.rv.TestUtil.userHttpBasic;
-import static vlad.kucher.rv.web.restaurant.UserRestaurantController.REST_URL;
+import static vlad.kucher.rv.web.UserRestaurantController.REST_URL;
 
 public class UserRestaurantControllerTest  extends AbstractControllerTest {
 

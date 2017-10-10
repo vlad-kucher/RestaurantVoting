@@ -10,10 +10,8 @@ import vlad.kucher.rv.repository.MenuRepository;
 import vlad.kucher.rv.repository.UserRepository;
 import vlad.kucher.rv.repository.VoteRepository;
 import vlad.kucher.rv.util.VoteUtil;
-import vlad.kucher.rv.util.exception.TooLateModificationException;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Service
 public class VoteService {
@@ -31,9 +29,7 @@ public class VoteService {
     public Vote vote(int restaurantId, int userId){
         Vote vote = repository.get(LocalDate.now(), userId);
 
-        if (vote != null && LocalTime.now().isAfter(VoteUtil.EXPIRED_TIME)) {
-            throw new TooLateModificationException("Vote can't be changed after " + VoteUtil.EXPIRED_TIME);
-        }
+        VoteUtil.checkExpired(vote);
 
         if (vote != null && vote.getMenu().getRestaurant().getId() == restaurantId) {
             return vote;

@@ -1,10 +1,9 @@
-package vlad.kucher.rv.web.vote;
+package vlad.kucher.rv.web;
 
 import org.junit.Assume;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import vlad.kucher.rv.util.VoteUtil;
-import vlad.kucher.rv.web.AbstractControllerTest;
 import vlad.kucher.rv.web.json.JsonUtil;
 
 import java.time.LocalTime;
@@ -17,7 +16,7 @@ import static vlad.kucher.rv.TestData.BURGER_KING;
 import static vlad.kucher.rv.TestData.USER;
 import static vlad.kucher.rv.TestData.USER_TODAY_VOTE;
 import static vlad.kucher.rv.TestUtil.userHttpBasic;
-import static vlad.kucher.rv.web.vote.VoteController.REST_URL;
+import static vlad.kucher.rv.web.VoteController.REST_URL;
 
 public class VoteControllerTest  extends AbstractControllerTest {
 

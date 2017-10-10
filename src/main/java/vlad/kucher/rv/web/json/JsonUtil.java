@@ -9,6 +9,9 @@ import static vlad.kucher.rv.web.json.JacksonObjectMapper.getMapper;
 
 public class JsonUtil {
 
+    private JsonUtil() {
+    }
+
     public static <T> T readValue(String json, Class<T> clazz) {
         try {
             return getMapper().readValue(json, clazz);

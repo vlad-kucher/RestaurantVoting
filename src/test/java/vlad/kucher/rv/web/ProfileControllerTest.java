@@ -1,4 +1,4 @@
-package vlad.kucher.rv.web.user;
+package vlad.kucher.rv.web;
 
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -7,7 +7,6 @@ import org.springframework.http.MediaType;
 import vlad.kucher.rv.model.Role;
 import vlad.kucher.rv.model.User;
 import vlad.kucher.rv.service.UserService;
-import vlad.kucher.rv.web.AbstractControllerTest;
 import vlad.kucher.rv.web.json.JsonUtil;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -18,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static vlad.kucher.rv.TestData.ADMIN;
 import static vlad.kucher.rv.TestData.USER;
 import static vlad.kucher.rv.TestUtil.userHttpBasic;
-import static vlad.kucher.rv.web.user.ProfileController.REST_URL;
+import static vlad.kucher.rv.web.ProfileController.REST_URL;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 

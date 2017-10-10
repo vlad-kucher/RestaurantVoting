@@ -1,4 +1,4 @@
-package vlad.kucher.rv.web.restaurant;
+package vlad.kucher.rv.web;
 
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -7,7 +7,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import vlad.kucher.rv.model.Restaurant;
 import vlad.kucher.rv.service.RestaurantService;
-import vlad.kucher.rv.web.AbstractControllerTest;
 import vlad.kucher.rv.web.json.JsonUtil;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -15,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static vlad.kucher.rv.TestData.*;
 import static vlad.kucher.rv.TestUtil.userHttpBasic;
-import static vlad.kucher.rv.web.restaurant.AdminRestaurantController.REST_URL;
+import static vlad.kucher.rv.web.AdminRestaurantController.REST_URL;
 
 public class AdminRestaurantControllerTest extends AbstractControllerTest {
 
