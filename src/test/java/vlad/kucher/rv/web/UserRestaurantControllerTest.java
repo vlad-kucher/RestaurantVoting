@@ -31,7 +31,7 @@ public class UserRestaurantControllerTest  extends AbstractControllerTest {
 
     @Test
     public void testGetForDate() throws Exception {
-        mockMvc.perform(get(REST_URL + '/' + KFC_ID + "/by?date=" + KFC_OLD_MENU.getDate())
+        mockMvc.perform(get(REST_URL + '/' + KFC_ID + "?date=" + KFC_OLD_MENU.getDate())
                 .with(userHttpBasic(USER)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
@@ -49,7 +49,7 @@ public class UserRestaurantControllerTest  extends AbstractControllerTest {
 
     @Test
     public void testGetAllForDate() throws Exception {
-        mockMvc.perform(get(REST_URL + "/by?date=" + OLD_DATE)
+        mockMvc.perform(get(REST_URL + "?date=" + OLD_DATE)
                 .with(userHttpBasic(USER)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))

@@ -23,26 +23,24 @@ public class UserRestaurantController {
     private RestaurantService service;
 
     @GetMapping(value = "/{id}")
-    public RestaurantTo get(@PathVariable("id") int id){
-        log.info("get {}", id);
-        return service.get(LocalDate.now(), id);
-    }
-
-    @GetMapping(value = "/{id}/by")
-    public RestaurantTo getForDate(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam("date") LocalDate date, @PathVariable("id") int id){
-        log.info("get {} for date {}", id, date);
-        return service.get(date, id);
+    public RestaurantTo get(@PathVariable("id") int id, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam(value = "date", required = false) LocalDate date){
+        if (date == null) {
+            log.info("get {}", id);
+            return service.get(LocalDate.now(), id);
+        } else {
+            log.info("get {} for date {}", id, date);
+            return service.get(date, id);
+        }
     }
 
     @GetMapping
-    public List<RestaurantTo> getAll(){
-        log.info("getAll");
-        return service.getAll(LocalDate.now());
-    }
-
-    @GetMapping(value = "/by")
-    public List<RestaurantTo> getAllForDate(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam("date") LocalDate date){
-        log.info("getAllForDate {}", date);
-        return service.getAll(date);
+    public List<RestaurantTo> getAll(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam(value = "date", required = false) LocalDate date){
+        if (date == null) {
+            log.info("getAll");
+            return service.getAll(LocalDate.now());
+        } else {
+            log.info("getAll for date {}", date);
+            return service.getAll(date);
+        }
     }
 }

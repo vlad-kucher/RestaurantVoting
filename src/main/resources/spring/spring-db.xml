@@ -29,7 +29,8 @@
           p:username="${database.username}"
           p:password="${database.password}"
           p:maximumPoolSize="10"
-          p:minimumIdle="2"/>
+          p:minimumIdle="2"
+          p:connectionTestQuery="SELECT 1 FROM INFORMATION_SCHEMA.SYSTEM_USERS"/>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"

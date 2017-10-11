@@ -93,13 +93,13 @@ admin base64: `YWRtaW5AZ21haWwuY29tOmFkbWlu`
 `curl -s http://localhost:8080/rest/restaurants/0 -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
 #### get restaurant with menu and rating for the date
-`curl -s http://localhost:8080/rest/restaurants/0/by?date=2017-10-07 -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
+`curl -s http://localhost:8080/rest/restaurants/0?date=2017-09-29 -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
 #### get all restaurants with menu and rating for today
 `curl -s http://localhost:8080/rest/restaurants -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
 #### get all restaurants with menu and rating for the date
-`curl -s http://localhost:8080/rest/restaurants/by?date=2017-09-29 -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
+`curl -s http://localhost:8080/rest/restaurants?date=2017-09-29 -H'Authorization:Basic dXNlckBnbWFpbC5jb206cGFzc3dvcmQ='`
 
 
 ### RegisterController (for unauthorized):
