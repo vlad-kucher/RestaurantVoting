@@ -2,7 +2,6 @@ package vlad.kucher.rv.web;
 
 import org.junit.Test;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.ResultActions;
 import vlad.kucher.rv.util.RestaurantUtil;
 import vlad.kucher.rv.web.json.JsonUtil;
 
