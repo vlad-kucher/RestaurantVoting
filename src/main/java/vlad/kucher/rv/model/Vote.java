@@ -1,7 +1,5 @@
 package vlad.kucher.rv.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -11,18 +9,16 @@ import java.time.LocalDate;
 public class Vote extends AbstractBaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     @NotNull
-    @JsonIgnore
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "restaurant_id", nullable = false)
+    @JoinColumn(name = "restaurant_id")
     @NotNull
-    @JsonIgnore
     private Restaurant restaurant;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date")
     @NotNull
     private LocalDate date;
 

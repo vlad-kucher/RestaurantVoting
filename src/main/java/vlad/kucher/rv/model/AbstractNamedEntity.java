@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
     @NotBlank
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     protected String name;
 
     public AbstractNamedEntity() {

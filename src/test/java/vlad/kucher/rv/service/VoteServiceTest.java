@@ -37,8 +37,8 @@ public class VoteServiceTest extends AbstractServiceTest {
 
     @Test
     public void testCurrent() throws Exception {
-        String actual = JsonUtil.writeValue(service.current(USER_ID));
-        String expected = JsonUtil.writeValue(USER_TODAY_VOTE);
+        String actual = JsonUtil.writeValue(service.current(USER_ID).getRestaurant());
+        String expected = JsonUtil.writeValue(USER_TODAY_VOTE.getRestaurant());
         JSONAssert.assertEquals(expected, actual, false);
     }
 }

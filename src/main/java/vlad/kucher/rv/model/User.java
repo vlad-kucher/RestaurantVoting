@@ -15,17 +15,17 @@ import java.util.*;
 @Table(name = "users")
 public class User extends AbstractNamedEntity {
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email")
     @Email
     @NotBlank
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     @NotBlank
     @Size(min = 5, max = 50)
     private String password;
 
-    @Column(name = "enabled", nullable = false)
+    @Column(name = "enabled")
     private boolean enabled = true;
 
     @Column(name = "registered")

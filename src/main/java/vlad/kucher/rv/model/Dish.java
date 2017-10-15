@@ -11,12 +11,12 @@ import javax.validation.constraints.Positive;
 public class Dish extends AbstractNamedEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_id", nullable = false)
+    @JoinColumn(name = "menu_id")
     @NotNull
     @JsonIgnore
     private Menu menu;
 
-    @Column(name = "price", nullable = false)
+    @Column(name = "price")
     @Positive
     // http://stackoverflow.com/a/43051227/548473
     @NotNull

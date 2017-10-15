@@ -10,14 +10,14 @@ import java.util.List;
 public class Menu extends AbstractBaseEntity {
 
     @ManyToOne
-    @JoinColumn(name = "restaurant_id", nullable = false)
+    @JoinColumn(name = "restaurant_id")
     @NotNull
     private Restaurant restaurant;
 
     @OneToMany(mappedBy = "menu")
     private List<Dish> dishes;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date")
     @NotNull
     private LocalDate date;
 
