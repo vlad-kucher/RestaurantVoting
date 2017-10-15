@@ -66,7 +66,7 @@ public class Menu extends AbstractBaseEntity {
         return "Menu{" +
                 "id=" + getId() +
                 ", date=" + date +
-                ", restaurantId=" + restaurant.getId() +
+                ", restaurant=" + restaurant +
                 '}';
     }
 }
