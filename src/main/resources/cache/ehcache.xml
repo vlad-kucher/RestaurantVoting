@@ -1,0 +1,19 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="ehcache.xsd"
+         updateCheck="false">
+
+    <defaultCache
+            maxElementsInMemory="1000"
+            eternal="false"
+            timeToLiveSeconds="600"
+            overflowToDisk="false"
+            memoryStoreEvictionPolicy="LRU"/>
+
+    <cache name="restaurants"
+           maxElementsInMemory="1000"
+           eternal="false"
+           timeToLiveSeconds="600"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LRU"/>
+
+</ehcache>
