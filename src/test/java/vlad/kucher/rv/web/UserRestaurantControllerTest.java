@@ -26,7 +26,7 @@ public class UserRestaurantControllerTest  extends AbstractControllerTest {
                 .with(userHttpBasic(USER)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(content().json(JsonUtil.writeValue(RestaurantUtil.createTo(KFC_TODAY_MENU, 2))));
+                .andExpect(content().json(JsonUtil.writeValue(RestaurantUtil.createTo(KFC_TODAY_MENU))));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class UserRestaurantControllerTest  extends AbstractControllerTest {
                 .with(userHttpBasic(USER)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(content().json(JsonUtil.writeValue(RestaurantUtil.createTo(KFC_OLD_MENU, 2))));
+                .andExpect(content().json(JsonUtil.writeValue(RestaurantUtil.createTo(KFC_OLD_MENU))));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class UserRestaurantControllerTest  extends AbstractControllerTest {
                 .with(userHttpBasic(USER)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(content().json(JsonUtil.writeArray(RestaurantUtil.getTo(TODAY_MENUS, COUNTS).toArray())));
+                .andExpect(content().json(JsonUtil.writeArray(RestaurantUtil.getTo(TODAY_MENUS).toArray())));
     }
 
     @Test
@@ -53,6 +53,6 @@ public class UserRestaurantControllerTest  extends AbstractControllerTest {
                 .with(userHttpBasic(USER)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(content().json(JsonUtil.writeArray(RestaurantUtil.getTo(OLD_MENUS, COUNTS).toArray())));
+                .andExpect(content().json(JsonUtil.writeArray(RestaurantUtil.getTo(OLD_MENUS).toArray())));
     }
 }

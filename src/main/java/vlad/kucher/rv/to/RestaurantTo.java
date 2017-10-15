@@ -16,18 +16,14 @@ public class RestaurantTo {
 
     private final LocalDate date;
 
-    private final Integer rating;
-
     public RestaurantTo(@JsonProperty("id") Integer id,
                         @JsonProperty("name") String name,
                         @JsonProperty("dishes") List<Dish> dishes,
-                        @JsonProperty("date") LocalDate date,
-                        @JsonProperty("rating") Integer rating) {
+                        @JsonProperty("date") LocalDate date) {
         this.id = id;
         this.name = name;
         this.dishes = dishes;
         this.date = date;
-        this.rating = rating;
     }
 
     public Integer getId() {
@@ -46,10 +42,6 @@ public class RestaurantTo {
         return date;
     }
 
-    public Integer getRating() {
-        return rating;
-    }
-
     @Override
     public String toString() {
         return "RestaurantTo{" +
@@ -57,7 +49,6 @@ public class RestaurantTo {
                 ", name=" + name +
                 ", dishes=" + dishes +
                 ", date=" + date +
-                ", rating=" + rating +
                 '}';
     }
 }

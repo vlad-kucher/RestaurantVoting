@@ -1,11 +1,9 @@
 package vlad.kucher.rv;
 
 import vlad.kucher.rv.model.*;
-import vlad.kucher.rv.util.Count;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class TestData {
@@ -50,8 +48,6 @@ public class TestData {
     public static final Vote USER_OLD_VOTE = new Vote(1, USER, KFC, OLD_DATE);
     public static final Vote ADMIN_TODAY_VOTE = new Vote(2, ADMIN, KFC, LocalDate.now());
     public static final Vote ADMIN_OLD_VOTE = new Vote(3, ADMIN, KFC, OLD_DATE);
-
-    public static final List<Count> COUNTS = Collections.singletonList(new Count(0, 2));
 
     public static final List<Menu> TODAY_MENUS = Arrays.asList(KFC_TODAY_MENU, BURGER_KING_TODAY_MENU, PUZATA_HATA_TODAY_MENU);
     public static final List<Menu> OLD_MENUS = Arrays.asList(KFC_OLD_MENU, BURGER_KING_OLD_MENU, PUZATA_HATA_OLD_MENU);

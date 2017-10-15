@@ -41,7 +41,7 @@ public class RestaurantServiceTest extends AbstractServiceTest {
     @Test
     public void testGet() throws Exception {
         String actual = JsonUtil.writeValue(service.get(LocalDate.now(), 0));
-        String expected = JsonUtil.writeValue(RestaurantUtil.createTo(KFC_TODAY_MENU, 2));
+        String expected = JsonUtil.writeValue(RestaurantUtil.createTo(KFC_TODAY_MENU));
         JSONAssert.assertEquals(expected, actual, false);
     }
 
@@ -64,7 +64,7 @@ public class RestaurantServiceTest extends AbstractServiceTest {
     @Test
     public void testGetAll() throws Exception {
         String actual = JsonUtil.writeArray(service.getAll(LocalDate.now()).toArray());
-        String expected = JsonUtil.writeArray(RestaurantUtil.getTo(TODAY_MENUS, COUNTS).toArray());
+        String expected = JsonUtil.writeArray(RestaurantUtil.getTo(TODAY_MENUS).toArray());
         JSONAssert.assertEquals(expected, actual, false);
     }
 

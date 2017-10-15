@@ -4,33 +4,26 @@ import vlad.kucher.rv.model.Menu;
 import vlad.kucher.rv.to.RestaurantTo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class RestaurantUtil {
     private RestaurantUtil() {
     }
 
-    public static List<RestaurantTo> getTo(List<Menu> menus, List<Count> counts){
-        Map<Integer, Integer> rating = new HashMap<>();
-        for (Count c : counts) {
-            rating.put(c.getRestaurantId(), (int)c.getCount());
-        }
-
+    public static List<RestaurantTo> getTo(List<Menu> menus){
         List<RestaurantTo> toList = new ArrayList<>();
+
         for (Menu m : menus) {
-            toList.add(createTo(m, rating.getOrDefault(m.getRestaurant().getId(), 0)));
+            toList.add(createTo(m));
         }
 
         return toList;
     }
 
-    public static RestaurantTo createTo(Menu menu, int rating){
+    public static RestaurantTo createTo(Menu menu){
         return new RestaurantTo(menu.getRestaurant().getId(),
                 menu.getRestaurant().getName(),
                 menu.getDishes(),
-                menu.getDate(),
-                rating);
+                menu.getDate());
     }
 }

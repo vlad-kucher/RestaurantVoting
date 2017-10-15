@@ -8,7 +8,6 @@ import vlad.kucher.rv.model.Menu;
 import vlad.kucher.rv.model.Restaurant;
 import vlad.kucher.rv.repository.MenuRepository;
 import vlad.kucher.rv.repository.RestaurantRepository;
-import vlad.kucher.rv.repository.VoteRepository;
 import vlad.kucher.rv.to.RestaurantTo;
 import vlad.kucher.rv.util.RestaurantUtil;
 import vlad.kucher.rv.util.exception.NotFoundException;
@@ -27,9 +26,6 @@ public class RestaurantService {
     @Autowired
     private MenuRepository menuRepository;
 
-    @Autowired
-    private VoteRepository voteRepository;
-
     public Restaurant create(Restaurant restaurant){
         Assert.notNull(restaurant, "restaurant must not be null");
         return repository.save(restaurant);
@@ -45,7 +41,7 @@ public class RestaurantService {
         Assert.notNull(date, "date must not be null");
         Menu menu = menuRepository.get(date, id);
         Assert.notNull(menu, "not found menu for date " + date);
-        return RestaurantUtil.createTo(menu, voteRepository.countByDate(date, menu.getRestaurant().getId()));
+        return RestaurantUtil.createTo(menu);
     }
 
     public void delete(int id) throws NotFoundException {
@@ -60,7 +56,7 @@ public class RestaurantService {
     @Transactional
     public List<RestaurantTo> getAll(LocalDate date){
         Assert.notNull(date, "date must not be null");
-        return RestaurantUtil.getTo(menuRepository.getAll(date), voteRepository.countAllByDate(date));
+        return RestaurantUtil.getTo(menuRepository.getAll(date));
     }
 
     public List<Restaurant> getAllWithoutMenu(){
