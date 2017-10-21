@@ -2,15 +2,16 @@ package vlad.kucher.rv.service;
 
 import org.junit.Assume;
 import org.junit.Test;
-import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
+import vlad.kucher.rv.model.Vote;
 import vlad.kucher.rv.util.VoteUtil;
 import vlad.kucher.rv.util.exception.TooLateModificationException;
-import vlad.kucher.rv.web.json.JsonUtil;
 
 import java.time.LocalTime;
 
 import static vlad.kucher.rv.TestData.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.samePropertyValuesAs;
 
 public class VoteServiceTest extends AbstractServiceTest {
 
@@ -22,9 +23,9 @@ public class VoteServiceTest extends AbstractServiceTest {
         Assume.assumeFalse(LocalTime.now().isAfter(VoteUtil.EXPIRED_TIME));
         service.vote(PUZATA_HATA_ID, USER_ID);
 
-        String actual = JsonUtil.writeValue(service.current(USER_ID).getRestaurant());
-        String expected = JsonUtil.writeValue(PUZATA_HATA);
-        JSONAssert.assertEquals(expected, actual, false);
+        Vote actual = service.current(USER_ID);
+        actual.setUser(USER);
+        assertThat(actual, samePropertyValuesAs(USER_CHANGED_VOTE));
     }
 
     @Test
@@ -37,8 +38,8 @@ public class VoteServiceTest extends AbstractServiceTest {
 
     @Test
     public void testCurrent() throws Exception {
-        String actual = JsonUtil.writeValue(service.current(USER_ID).getRestaurant());
-        String expected = JsonUtil.writeValue(USER_TODAY_VOTE.getRestaurant());
-        JSONAssert.assertEquals(expected, actual, false);
+        Vote actual = service.current(USER_ID);
+        actual.setUser(USER);
+        assertThat(actual, samePropertyValuesAs(USER_TODAY_VOTE));
     }
 }

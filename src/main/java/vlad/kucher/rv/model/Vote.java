@@ -65,6 +65,7 @@ public class Vote extends AbstractBaseEntity {
     @Override
     public String toString() {
         return "Vote{" +
+                "id=" + getId() +
                 ", restaurant=" + restaurant +
                 ", date=" + date +
                 '}';

@@ -45,13 +45,10 @@ public class TestData {
     public static final Menu PUZATA_HATA_OLD_MENU = new Menu(5, PUZATA_HATA, Arrays.asList(PUZATA_HATA_OLD_DISH_1, PUZATA_HATA_OLD_DISH_2), OLD_DATE);
 
     public static final Vote USER_TODAY_VOTE = new Vote(0, USER, KFC, LocalDate.now());
-    public static final Vote USER_OLD_VOTE = new Vote(1, USER, KFC, OLD_DATE);
-    public static final Vote ADMIN_TODAY_VOTE = new Vote(2, ADMIN, KFC, LocalDate.now());
-    public static final Vote ADMIN_OLD_VOTE = new Vote(3, ADMIN, KFC, OLD_DATE);
+    public static final Vote USER_CHANGED_VOTE = new Vote(0, USER, PUZATA_HATA, LocalDate.now());
 
     public static final List<Menu> TODAY_MENUS = Arrays.asList(KFC_TODAY_MENU, BURGER_KING_TODAY_MENU, PUZATA_HATA_TODAY_MENU);
     public static final List<Menu> OLD_MENUS = Arrays.asList(KFC_OLD_MENU, BURGER_KING_OLD_MENU, PUZATA_HATA_OLD_MENU);
-    public static final List<Menu> KFC_MENUS = Arrays.asList(KFC_TODAY_MENU, KFC_OLD_MENU);
 
     private TestData() {
     }
