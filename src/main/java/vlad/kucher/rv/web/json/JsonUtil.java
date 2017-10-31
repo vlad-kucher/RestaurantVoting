@@ -20,6 +20,7 @@ public class JsonUtil {
         }
     }
 
+    @SafeVarargs
     public static <T> String writeArray(T... array) {
         return writeValue(array);
     }

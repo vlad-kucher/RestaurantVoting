@@ -26,7 +26,4 @@ public interface MenuRepository extends JpaRepository<Menu, Integer> {
 
     @Query("SELECT DISTINCT m FROM Menu m JOIN FETCH m.restaurant JOIN FETCH m.dishes WHERE m.date=:date")
     List<Menu> getAll(@Param("date") LocalDate date);
-
-    @Query("SELECT DISTINCT m FROM Menu m JOIN FETCH m.restaurant JOIN FETCH m.dishes WHERE m.restaurant.id=:restaurantId")
-    List<Menu> getAllForRestaurant(@Param("restaurantId") int restaurantId);
 }
